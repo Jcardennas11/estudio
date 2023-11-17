@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            
+           height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form{
+            background-color: red;
+            width: 500px;
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+           justify-content: center;
+           gap: 10px;
+           flex-direction: column;
+        }
+    </style>
+
+</head>
+<body onload="load_page()">
+    <div class="container">
+        <div class="form">
+
+            <div>
+                <label for="num_1">Primer numero</label>
+                <input type="text" id="num_one" placeholder="digite el primer numero" >
+            </div>
+           <div>
+                <label for="num_2">Segundo numero</label>
+                <input type="text" id="num_two" placeholder="digite el segundo numero">
+           </div>
+           <div>
+                <button onclick="calcular()">Calcular</button>
+           </div>
+           <div id="row">
+                <label for="" id="print"></label>
+          </div>
+
+        </div>
+        <div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+    function load_page(){
+
+        document.getElementById("num_one").focus();
+    }
+
+    
+
+
+        function calcular(){
+            var num_one = document.getElementById("num_one").value;
+            var num_two = document.getElementById("num_two").value;
+            var print = document.getElementById("print");
+             
+             if (!num_one.trim() || !num_two.trim()) {
+                Swal.fire({
+                    icon: 'question',
+                    title: 'Ingrese datos numericos',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                return;
+            }
+              
+          
+            if(isNaN(num_one) || isNaN(num_two)){
+               
+                alert("por favor ingrese un numero");
+                
+                return;
+            }
+            var resultado = "";
+            for(var i = parseInt(num_one); i <= parseInt(num_two); i += 2 ){
+                resultado +=i + "-";
+            }
+            print.innerText = resultado;
+
+
+         
+      
+
+        
+        // document.getElementById('row').innerHTML = '';
+
+    
+        // for (var i = 0; i < num_one.length; i++) {
+        //   var letra = num_one.charAt(i);
+        //   document.getElementById('row').innerHTML += letra + '<br>';
+        // }
+        }
+    </script>
+</body>
+</html>

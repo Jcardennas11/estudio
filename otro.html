@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            
+           height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form{
+            background-color: aqua;
+            width: 500px;
+            height: 200px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+           justify-content: center;
+           gap: 10px;
+           flex-direction: column;
+        }
+        .error {
+            border: 2px solid red;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="form">
+
+            <div>
+                <label for="num_1">pimer numero</label>
+                <input type="text" id="num_one" placeholder="digite el primer numero" autofocus>
+            </div>
+           <div>
+                <label for="num_2">segundo numero</label>
+                <input type="text" id="num_two" placeholder="digite el segundo numero">
+           </div>
+           <div>
+                <button onclick="calcular()">Calcular</button>
+           </div>
+           <div class="row">
+                <label for="" id="print"></label>
+          </div>
+
+        </div>
+        <div></div>
+
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function calcular(){
+            var num_one = document.getElementById("num_one").value;
+            var num_two = document.getElementById("num_two").value;
+            var print = document.getElementById("print");
+
+            // Verificar si la caja de texto está vacía
+            if (!num_one.trim() || !num_two.trim()) {
+                // Mostrar alerta personalizada con SweetAlert2
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ingrese datos numéricos',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+                return;
+            }
+
+            
+           
+
+           if(isNaN(num_one) || isNaN(num_two)){
+                alert("digitó mal, por favor ingrese un numero");
+                document.getElementById("num_one").classList.add("error");
+                document.getElementById("num_two").classList.add("error");
+                print.innerText = "";
+            }else{
+                document.getElementById("num_one").classList.remove("error");
+                document.getElementById("num_two").classList.remove("error");
+            }
+
+            var resultado = "";
+            for(var i = parseInt(num_one); i <= parseInt(num_two); i += 2 ){
+                resultado +=i + " ";
+            }
+            print.innerText = resultado;
+        }
+    </script>
+</body>
+</html>
